@@ -9,7 +9,7 @@
       <p
         v-for="(filter, index) in filters"
         :key="index"
-        class="text-center w-1/3"
+        class="text-center w-1/3 hover:cursor-pointer"
         @click="setCurrentFilter(filter)"
         :class="{
           'border-b-2 border-blue-600':
@@ -51,17 +51,23 @@ export default {
     });
 
     onMounted(() => {
+      const storedWatchList = localStorage.getItem("watchList");
+
+      console.log(storedWatchList);
+
       fetch(
         "https://gist.githubusercontent.com/benfranke/c33280a8df5f4f9db2e63ad45cab26a4/raw/f3ad6c00ff520c2667305103d5705bcbb57a7778/products.json"
       )
         .then((response) => response.json())
         .then((data: ProductStore) => {
           productStore.init(data.products, data.filters, data.header);
-          console.log(data);
+          if (storedWatchList) {
+            productStore.setWatchList(JSON.parse(storedWatchList));
+          }
         });
     });
 
-    function setCurrentFilter(filter: string) {
+    function setCurrentFilter(filter: string): void {
       productStore.setFilter(filter);
       productStore.openProductDetailPage(undefined);
     }

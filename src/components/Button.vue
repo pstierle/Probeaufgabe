@@ -1,5 +1,15 @@
 <template>
-  <div class="rounded outline-none px-2 py-1 bg-blue-600 text-center">
+  <div
+    class="
+      rounded
+      outline-none
+      px-2
+      py-1
+      bg-blue-600
+      text-center
+      hover:cursor-pointer
+    "
+  >
     {{ text }}
   </div>
 </template>

@@ -1,5 +1,11 @@
 <template>
   <div class="container p-3 overflow-auto">
+    <img
+      @click="closeDetailPage"
+      src="../assets/back.svg"
+      alt=""
+      class="w-6 hover:cursor-pointer"
+    />
     <ProductTile :fullDisplay="false" :product="openProduct" />
     <p>{{ openProduct.description }}</p>
     <div class="mt-2">
@@ -51,10 +57,15 @@ export default {
       productStore.removeFromWatchList(productID);
     }
 
+    function closeDetailPage() {
+      productStore.openProductDetailPage(undefined);
+    }
+
     return {
       onWatchList,
       addToWatchList,
       removeFromWatchList,
+      closeDetailPage,
     };
   },
 };

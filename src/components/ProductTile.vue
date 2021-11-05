@@ -76,10 +76,10 @@ export default {
       productStore.getProductOnWatchList(props.product.id)
     );
 
-    const roundedRating = Math.round(props.product.rating * 2) / 2;
+    const roundedRating: number = Math.round(props.product.rating * 2) / 2;
     const even: Boolean = roundedRating % 2 === 0;
-    const fullStars = ~~roundedRating;
-    const emptyStars = even
+    const fullStars: number = ~~roundedRating;
+    const emptyStars: number = even
       ? 5 - Math.floor(roundedRating)
       : 4 - Math.floor(roundedRating);
 

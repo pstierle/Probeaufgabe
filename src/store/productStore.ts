@@ -59,6 +59,11 @@ class ProductState extends Store<ProductStore> {
 
     addToWatchList(productID: number){
         this.state.watchList.push(productID);
+        this.updateStorage();
+    }
+
+    setWatchList(list : number []) : void{
+        this.state.watchList = list;
     }
 
     removeFromWatchList(productID: number){
@@ -67,10 +72,15 @@ class ProductState extends Store<ProductStore> {
                 this.state.watchList.splice(i, 1);
             }
         }
+        this.updateStorage();
     }
 
     getProductOnWatchList(productID: number) : Boolean{
         return this.state.watchList.includes(productID);
+    }
+
+    updateStorage() : void{
+        localStorage.setItem("watchList", JSON.stringify(this.state.watchList));
     }
 }
 
